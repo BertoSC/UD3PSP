@@ -11,20 +11,13 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) throws SocketException {
         try {
-            // Obtener todas las interfaces de red
+
             Enumeration<NetworkInterface> interfaces = NetworkInterface.getNetworkInterfaces();
 
-            if (interfaces == null) {
-                System.out.println("No se encontraron interfaces de red.");
-                return;
-            }
-
-            // Iterar sobre las interfaces
             for (NetworkInterface ni : Collections.list(interfaces)) {
                 System.out.println("Interfaz: " + ni.getName());
                 System.out.println("  Descripción: " + ni.getDisplayName());
 
-                // Obtener las direcciones IP asociadas a la interfaz
                 Enumeration<InetAddress> inetAddresses = ni.getInetAddresses();
                 for (InetAddress inetAddress : Collections.list(inetAddresses)) {
                     System.out.println("  Dirección IP: " + inetAddress.getHostAddress());
