@@ -44,7 +44,5 @@ public class Main {
         System.out.println(nuevo);
         File file = new File("src/main/resources/blog-resources/prueba.html");
         Files.writeString(file.toPath(), nuevo);
-
-
     }
 }
