@@ -54,8 +54,9 @@ public class Main {
         String nuevo = htmlArticle.replace( "<h2 class=\"title fs-1\"></h2>", "<h2 class=\"title fs-1\">"+temp.getTitle()+"</h2>");
         nuevo = nuevo.replace(
                 "<link href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css\" rel=\"stylesheet\" integrity=\"sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH\" crossorigin=\"anonymous\">",
-                "<link href=\"C:\\Users\\a23albertogc\\Desktop\\PSP\\UD3\\src\\main\\resources\\blog-resources\\style.css\" rel=\"stylesheet\">" +
+
                         "<link href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css\" rel=\"stylesheet\" integrity=\"sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH\" crossorigin=\"anonymous\">"
+                                +System.lineSeparator()+"<link href=\"style.css\" rel=\"stylesheet\">"
         );
         nuevo = nuevo.replace("<!--<img src=\"IMAGE-SRC\" alt=\"article\">-->","<img src="+"\""+temp.getPhoto_url()+"\""+" alt=\"article\">"+temp.getContent_html());
         nuevo = nuevo.replace("<time datetime=\"\"></time>", "<time datetime=\"" + temp.getUpdated_at() + "\">"+ temp.getUpdated_at()+"</time>");
