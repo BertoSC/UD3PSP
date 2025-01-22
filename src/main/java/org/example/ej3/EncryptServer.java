@@ -13,14 +13,20 @@ public class EncryptServer {
             System.out.println("The server is running...");
             while (true) {
                 try (var socket = listener.accept()) {
-
+                    var in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                     var out = new PrintWriter(socket.getOutputStream(), true);
-                    out.println(new Date().toString());
+                    String clientMSN;
+                    while ((clientMSN=in.readLine())!=null) {
+                        if (clientMSN.equals("exit")){
+                            out.println("Closing server...");
+                            break;
+                        }
+                        String cypherMSN = msnEncrypted(clientMSN);
+                        out.println(cypherMSN);
+                    }
                 }
             }
-
         }
-
     }
 
     public static String msnEncrypted(String msn){
