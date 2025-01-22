@@ -18,7 +18,6 @@ public class EncryptServer {
                     String clientMSN;
                     while ((clientMSN=in.readLine())!=null) {
                         if (clientMSN.equals("exit")){
-                            out.println("Closing server...");
                             break;
                         }
                         String cypherMSN = msnEncrypted(clientMSN);

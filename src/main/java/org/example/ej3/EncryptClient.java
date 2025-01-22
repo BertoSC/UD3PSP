@@ -15,7 +15,6 @@ public class EncryptClient {
                 Scanner input = new Scanner(System.in);
                 String msn = input.nextLine();
                 if (msn.equals("exit")){
-                    out.println("Exit APP");
                     break;
                 }
                 out.println(msn);
