@@ -49,5 +49,4 @@ public class EncryptServer {
         }
         return cypherMsn.toString().trim();
     }
-
 }

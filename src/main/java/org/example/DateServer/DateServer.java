@@ -1,22 +1,22 @@
 package org.example.DateServer;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
+import java.net.Socket;
 import java.util.Date;
+
 public class DateServer {
     public static void main(String[] args) throws IOException {
-        try (var listener = new ServerSocket(57777)) {
-            System.out.println("The server is running...");
+        try (ServerSocket listener = new ServerSocket(57778)) {
+            System.out.println("The date server is running...");
             while (true) {
-                try (var socket = listener.accept()) {
+                Socket socket = listener.accept();
+                Thread serverThread = new Thread(new DateServerWorker(socket));
+                serverThread.start();
 
-
-
-                    var out = new PrintWriter(socket.getOutputStream(), true);
-                    out.println(new Date().toString());
-                }
             }
-
         }
     }
 }
+
