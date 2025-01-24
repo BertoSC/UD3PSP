@@ -15,14 +15,25 @@ public class SquareServerWorker implements Runnable{
 
     @Override
     public void run() {
-        try {
-            var in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-            var out = new PrintWriter(socket.getOutputStream(), true);
-            int number = Integer.parseInt(in.readLine());
-            int square = number * number;
-            out.println(square);
+        try (var in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+             var out = new PrintWriter(socket.getOutputStream(), true)) {
+            String inputLine;
+            while ((inputLine = in.readLine()) != null) {
+                if (inputLine.equalsIgnoreCase("QUIT")) {
+                    System.out.println("Client disconnected.");
+                    break;
+                }
+                try {
+                    int number = Integer.parseInt(inputLine);
+                    int square = number * number;
+                    out.println("Square: " + square);
+                } catch (NumberFormatException e) {
+                    out.println("Error: Input must be a valid number.");
+                }
+            }
+
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            System.err.println("Error in SquareServerWorker: " + e.getMessage());
         }
     }
 }

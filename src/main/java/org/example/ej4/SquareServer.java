@@ -10,8 +10,6 @@ public class SquareServer {
         System.out.println("The SquareServer is running...");
         while (true){
             Socket socket = listener.accept();
-
-
             Thread squareTh = new Thread(new SquareServerWorker(socket));
             squareTh.start();
         }
